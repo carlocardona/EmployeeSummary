@@ -36,12 +36,7 @@ function newManager() {
             message: 'Manager Office Number: '
         }
     ]).then((response) => {
-        const manager = new Manager(
-            response.name,
-            response.id,
-            response.email,
-            response.officeNum
-        );
+        const manager = new Manager(response.name, response.id, response.email, response.officeNum);
         employees.push(manager);
         newMember();
     });
@@ -67,7 +62,6 @@ function newMember() {
             case 'Intern': newIntern();
                 break;
             default: empSummary();
-
         }
     });
 }
@@ -96,7 +90,7 @@ function newEngineer() {
             message: 'Github Username: '
         }
     ]).then((response) => {
-        const engineer = (response.name, response.id, response.email, response.github);
+        const engineer = new Engineer(response.name, response.id, response.email, response.github);
         employees.push(engineer);
         newMember();
     });
@@ -139,7 +133,7 @@ function empSummary() {
         fs.mkdirSync(OUTPUT_DIR);
     }
     else {
-        fs.writeFileSync(outputPath, render(team), "utf-8");
+        fs.writeFileSync(outputPath, render(employees), "utf-8");
     }
 }
 
