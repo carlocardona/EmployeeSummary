@@ -13,7 +13,6 @@ const render = require("./lib/htmlRenderer");
 const employees = [];
 
 //Manager
-
 function newManager() {
     inquirer.prompt([
         {
@@ -25,7 +24,6 @@ function newManager() {
             type: 'number',
             name: 'id',
             message: 'Manager ID: '
-            //bonus validate
         },
         {
             type: 'input',
@@ -50,7 +48,6 @@ function newManager() {
 }
 
 //Team Member
-
 function newMember() {
     inquirer.prompt([
         {
@@ -72,26 +69,81 @@ function newMember() {
             default: empSummary();
 
         }
-    })
-
+    });
 }
 
 //Engineer
 function newEngineer() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Engineer Name: '
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: "Engineer ID: "
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Email: "
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Github Username: '
+        }
+    ]).then((response) => {
+        const engineer = (response.name, response.id, response.email, response.github);
+        employees.push(engineer);
+        newMember();
+    });
 
 }
 
 //Intern
 function newIntern() {
-
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Intern Name: '
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: 'Intern ID: '
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Intern Email: '
+        }
+        {
+            type: 'input',
+            name: 'school',
+            message: 'School Attended: '
+        }
+    ]).then((response) => {
+        const intern = new Intern(response.name, response.id, response.email, response.school);
+        employees.push(intern);
+        newMember();
+    });
 }
 
 //Employee Summary
 function empSummary() {
-
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    else {
+        fs.writeFileSync(outputPath, render(team), "utf-8");
+    }
 }
 
-
+newManager();
 
 
 // Write code to use inquirer to gather information about the development team members,
