@@ -120,7 +120,7 @@ function newIntern() {
             type: 'input',
             name: 'email',
             message: 'Intern Email: '
-        }
+        },
         {
             type: 'input',
             name: 'school',
