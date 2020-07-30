@@ -13,4 +13,4 @@ Running terminal is where we enter our information.
 
 Upon finishing interaction placing the desired information, the program terminates with producing an HTML file.
 
-<img src = ' https://github.com/carlocardona/EmployeeSummary/blob/master/Assets/OutputRender.PNG'
+<img src = ' https://github.com/carlocardona/EmployeeSummary/blob/master/Assets/OutputRender.PNG'>
